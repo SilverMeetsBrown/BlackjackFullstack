@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<link rel="shortcut icon" href="#">
+		<link rel="stylesheet" href="/static/blackjack.css">
+		<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+		<script src="/static/blackjack.js"></script>
+	</head>
+
+	<body>
+		<p id="roomNum" hidden>{{json.currentRoom}}</p>
+		<p id="userID" hidden>{{json.userID}}</p>
+		<p id="previousRoom" hidden>{{json.previousRoom}}</p>
+
+		<div id='mainTable' class="table">
+			<div id='infoField' class="sideColumn">
+				<div class="cell">
+					<div>
+						<p class='item' id="username">{{json.username}}</p>
+						<p class='item' id="money">${{json.money}}</p>
+					</div>
+				</div>
+				<div class="cell" id="players">
+					<ul id="playerList">
+					</ul>
+				</div>
+				<div class="cell" id='roomDiv'>
+					<div>
+						<p id="currentRoom" class='item'>
+							{% if json.currentRoom == -1 %}
+								You are not in a room.
+							{% else %}
+								You are in room #{{json.currentRoom|int+1}}.
+							{% endif%}
+						</p>
+						<form method='POST', action='/blackjack'>
+							<input name = 'previousRoom' value="{{json.currentRoom}}" hidden>
+							<select name='roomNum'>
+								{% for i in range(json.rooms) %}
+									<option value="{{ i }}">Room #{{i+1}}</option>
+								{% endfor %}
+								<option value="new">Create New Room</option>
+							</select>
+							<input type='submit' value='Go'>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div id='playingField' class="mainColumn">
+				<div id = "dealerCards" class="cell"></div>
+				<div class="cell" id="mid">
+					<div class='total' id='dealerScore' style="display:none;"></div>
+					<div class='cell'>
+						<h1 class='item' id='message'>Join a room to begin blackjack.</h1>
+						<form class='item' id='startCountdown' style="display:none;" onsubmit='return beginCountdown()'>
+							<h1>There is no game in progress.</h1>
+							<input type='submit' value='Begin new game!'>
+						</form>
+						<form class='item' id='placeBet' onsubmit="return joinGame()" style="display:none;">
+							<h1>A new game will begin shortly. Place your bet to join!</h1>
+							<div>
+								Bet Amount: <input type="number" min="50" max={{json.money}} value="50" id="betAmount" required>
+								<input type="submit" id="startButton" value="Place Bet">
+							</div>
+						</form>
+						<div id='actions' style="display:none;">
+							<input type="submit" id="hitButton" value="Hit" onclick='return hit()'>
+							<input type="submit" id="standButton" value="Stand" onclick='return endTurn()'>
+						</div>
+						<div id='specialActions' style="display:none;">
+							<input type="submit" id="doubleButton" value="Double Down" onclick='return double()'>
+							<input type="submit" id="surrenderButton" value="Surrender" onclick='return surrender()'>
+							<input type="submit" id="splitButton" value="Split Hand" disabled onclick='return split()'>
+							<input type="submit" id="insuranceButton" value="Insurance" disabled onclick='return setInsurance()'>
+							<input type="submit" id="skipButton" value="Ready" onclick='return endTurn()'>
+						</div>
+					</div>
+					<div class='total' id='userScore' style="display:none;"></div>
+				</div>
+				<div id = "userCards" class="cell"></div>
+			</div>
+		</div>
+	</body>
+</html>

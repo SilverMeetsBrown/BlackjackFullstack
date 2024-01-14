@@ -1,0 +1,27 @@
+body {
+	background-color: #35654d;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 40%;
+	transform: translateX(-50%);
+	left: 50%;
+}
+
+div {
+	display: grid;
+	justify-content: center;
+}
+
+div.cell {
+	border-color: #312b2a;
+	border-style: groove;
+	border-width: 15px;
+	background-color: #997950;
+	padding: 15px;
+}
+
+form {
+	display: grid;
+	justify-content: center;
+}

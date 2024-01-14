@@ -1,0 +1,129 @@
+body {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+div.table {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+div.sideColumn {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+}
+
+div#infoField {
+	background-color: #4B3A26;
+	border-color: #312b2a;
+	border-width: 5px;
+	border-style: outset;
+}
+
+div.mainColumn {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+}
+
+#mid {
+	display: flex;
+	flex-direction: column;
+}
+
+div#playingField {
+	background-color: #35654d;
+}
+
+div.cell {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+div#infoField div.cell {
+	margin: 2%;
+	border-color: #312b2a;
+	border-width: 3px;
+	border-style: inset;
+}
+
+div#infoField div.cell{
+	background-color: #997950;
+}
+
+div#players {
+	min-height: 70%;
+	overflow: auto;
+	flex-direction: column;
+}
+
+div#mid form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+img.card {
+	max-height: 70%;
+	object-fit: contain;
+	padding: 3px;
+	display:block
+}
+
+.miniCards img.card {
+	max-height: 80%;
+}
+
+div#infoField div#players .miniCards {
+	max-height: 100%;
+	margin: 0px;
+	background-color: eeeeee;
+	border-style: none;
+}
+
+div#infoField div#players .sideColumn {
+	vertical-align: middle;
+	justify-content: center;
+}
+
+.total {
+	background-color: black;
+	text-align: center;
+	color: white;
+	padding: 8px;
+	font-size: 100%;
+	border-radius: 30%;
+}
+
+div#infoField div#players .total {
+	max-width:15%;
+	background-color: black;
+}
+
+.item {
+	background-color: eeeeee;
+	border-style: solid;
+	border-color: 777777;
+	border-width: 2px;
+	text-align: center;
+	padding: 3px;
+}
+
+#mid .item {
+	padding: 10px;
+	border-width: 3px;
+}
+
+#playerItem {
+	max-width: 90%;
+	padding: 0px;
+	margin: 1%;
+}
